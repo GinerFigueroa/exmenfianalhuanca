@@ -2333,5 +2333,715 @@
 </body>
 </html>
 ```
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proceso de Planeamiento Estratégico · Hitos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            background: #f0f4fa;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            padding: 2rem 1rem;
+            color: #0b1e33;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 30px 55px -20px rgba(0, 20, 50, 0.3);
+            padding: 2.8rem 3rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            border-bottom: 5px solid #1a5bb5;
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #06204a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 500;
+            background: #e1ebfa;
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            color: #1a4b8a;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 650;
+            margin-top: 2.2rem;
+            margin-bottom: 1rem;
+            padding-left: 0.8rem;
+            border-left: 6px solid #1a5bb5;
+            color: #0a2b5a;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #103c70;
+        }
+
+        /* ============================================================ */
+        /*  FLUJO PRINCIPAL DEL PROCESO                                 */
+        /* ============================================================ */
+        .proceso-container {
+            background: #f9fcff;
+            border-radius: 24px;
+            padding: 2rem 2rem;
+            border: 1px solid #e3ecf7;
+            margin: 1.5rem 0;
+        }
+
+        .flujo-principal {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem 0.6rem;
+            margin: 1.5rem 0;
+        }
+
+        .hito {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.2rem 1.8rem;
+            border: 3px solid #1a5bb5;
+            text-align: center;
+            min-width: 130px;
+            flex: 1 1 auto;
+            max-width: 200px;
+            box-shadow: 0 4px 12px rgba(26, 91, 181, 0.10);
+            position: relative;
+            transition: 0.15s ease;
+        }
+
+        .hito:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(26, 91, 181, 0.18);
+        }
+
+        .hito .numero {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+            background: #1a5bb5;
+            padding: 0.1rem 0.9rem;
+            border-radius: 40px;
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hito .icono {
+            font-size: 2rem;
+            display: block;
+            margin: 0.1rem 0;
+        }
+
+        .hito .nombre {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0a2b5a;
+        }
+
+        .hito .descripcion {
+            font-size: 0.8rem;
+            color: #2c4a70;
+            margin-top: 0.2rem;
+        }
+
+        .hito-destacado {
+            border-color: #d4a017;
+            background: #fffcf0;
+        }
+
+        .hito-destacado .numero {
+            background: #d4a017;
+        }
+
+        .flecha-hito {
+            font-size: 2rem;
+            color: #1a5bb5;
+            font-weight: 300;
+            flex-shrink: 0;
+        }
+
+        /* ============================================================ */
+        /*  LÍNEA DE TIEMPO CON HITOS                                   */
+        /* ============================================================ */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+            margin: 1.5rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #1a5bb5, #7f9bc9, #1a5bb5);
+            transform: translateX(-50%);
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-item .contenido {
+            width: 45%;
+            background: #f9fcff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 18px;
+            border: 1px solid #e3ecf7;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+        }
+
+        .timeline-item .contenido .titulo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #0a2b5a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-item .contenido .titulo .badge {
+            background: #1a5bb5;
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .timeline-item .contenido .detalle {
+            font-size: 0.92rem;
+            color: #2c4a70;
+            margin-top: 0.3rem;
+        }
+
+        .timeline-item .contenido .detalle ul {
+            list-style: disc;
+            padding-left: 1.4rem;
+            margin: 0.3rem 0;
+        }
+
+        .timeline-item .contenido .detalle ul li {
+            margin-bottom: 0.15rem;
+        }
+
+        .timeline-item .marca {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #1a5bb5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 4px solid white;
+            box-shadow: 0 2px 10px rgba(26, 91, 181, 0.25);
+            z-index: 2;
+        }
+
+        .timeline-item .marca.destacada {
+            background: #d4a017;
+            width: 48px;
+            height: 48px;
+            font-size: 1rem;
+        }
+
+        /* ============================================================ */
+        /*  DIAGRAMA DE VALIDACIÓN CON MISIÓN Y VISIÓN                   */
+        /* ============================================================ */
+        .validacion-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            padding: 1.8rem 2rem;
+            background: #eef5ff;
+            border-radius: 20px;
+            border: 1px solid #ccdef5;
+        }
+
+        .validacion-item {
+            text-align: center;
+            padding: 1rem 1.8rem;
+            background: white;
+            border-radius: 16px;
+            border: 2px solid #1a5bb5;
+            min-width: 140px;
+            box-shadow: 0 2px 8px rgba(26, 91, 181, 0.06);
+        }
+
+        .validacion-item .icono {
+            font-size: 2rem;
+            display: block;
+        }
+
+        .validacion-item .label {
+            font-weight: 700;
+            color: #0a2b5a;
+            font-size: 1.1rem;
+        }
+
+        .validacion-item .sub {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #2c4a70;
+        }
+
+        .flecha-validacion {
+            font-size: 2.2rem;
+            color: #1a5bb5;
+        }
+
+        .circulo-central {
+            background: #1a5bb5;
+            color: white;
+            border-radius: 60px;
+            padding: 0.8rem 2.2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 14px rgba(26, 91, 181, 0.25);
+        }
+
+        /* ============================================================ */
+        /*  TABLA DE HITOS                                              */
+        /* ============================================================ */
+        .tabla-hitos {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            margin: 0.8rem 0;
+        }
+
+        .tabla-hitos th {
+            background: #e3edfc;
+            color: #0a2b5a;
+            font-weight: 650;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            border-bottom: 2px solid #b9ceea;
+        }
+
+        .tabla-hitos td {
+            padding: 0.7rem 1rem;
+            border-bottom: 1px solid #dfe8f3;
+            vertical-align: top;
+        }
+
+        .tabla-hitos tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tabla-hitos .hito-num {
+            font-weight: 700;
+            color: #1a5bb5;
+        }
+
+        /* ============================================================ */
+        /*  RESPONSIVE                                                   */
+        /* ============================================================ */
+        @media (max-width: 800px) {
+            .container {
+                padding: 1.5rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h1 small {
+                font-size: 0.7rem;
+                padding: 0.2rem 1rem;
+                margin-top: 0.3rem;
+            }
+            .flujo-principal {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .flecha-hito {
+                transform: rotate(90deg);
+                font-size: 1.4rem;
+            }
+            .hito {
+                max-width: 100%;
+                min-width: unset;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+            }
+            .timeline-item .contenido {
+                width: 100%;
+            }
+            .timeline-item .marca {
+                left: 20px;
+                transform: translateX(-50%);
+                width: 34px;
+                height: 34px;
+                font-size: 0.7rem;
+            }
+            .timeline-item .marca.destacada {
+                width: 40px;
+                height: 40px;
+                font-size: 0.8rem;
+            }
+            .validacion-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .flecha-validacion {
+                transform: rotate(90deg);
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>
+        📘 Proceso de Planeamiento Estratégico
+        <small>Hitos más importantes</small>
+    </h1>
+
+    <!-- ============================================================ -->
+    <!--  INTRO                                                         -->
+    <!-- ============================================================ -->
+    <div style="background: #eef5ff; border-radius: 18px; padding: 1.2rem 1.8rem; margin-bottom: 2rem; border: 1px solid #ccdef5;">
+        <p style="font-weight: 500; color: #0f3263; font-size: 1.05rem;">
+            El <strong>planeamiento estratégico</strong> es un proceso sistemático que define el rumbo de una organización, 
+            estableciendo <strong>objetivos</strong>, <strong>estrategias</strong> y <strong>planes de acción</strong> 
+            para alcanzar la visión. A continuación, se presentan los <strong>hitos más importantes</strong> del proceso.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  FLUJO PRINCIPAL - HITOS VISUALES                             -->
+    <!-- ============================================================ -->
+    <h2>📍 Hitos del proceso (flujo principal)</h2>
+
+    <div class="proceso-container">
+        <div class="flujo-principal">
+            <!-- Hito 1 -->
+            <div class="hito">
+                <span class="numero">HITO 1</span>
+                <span class="icono">🔍</span>
+                <div class="nombre">Diagnóstico</div>
+                <div class="descripcion">Análisis interno y externo</div>
+            </div>
+            <span class="flecha-hito">→</span>
+
+            <!-- Hito 2 -->
+            <div class="hito">
+                <span class="numero">HITO 2</span>
+                <span class="icono">🎯</span>
+                <div class="nombre">Objetivos</div>
+                <div class="descripcion">Definición de metas</div>
+            </div>
+            <span class="flecha-hito">→</span>
+
+            <!-- Hito 3 -->
+            <div class="hito">
+                <span class="numero">HITO 3</span>
+                <span class="icono">📋</span>
+                <div class="nombre">Estrategias</div>
+                <div class="descripcion">Cursos de acción</div>
+            </div>
+            <span class="flecha-hito">→</span>
+
+            <!-- Hito 4 -->
+            <div class="hito hito-destacado">
+                <span class="numero">HITO 4</span>
+                <span class="icono">📌</span>
+                <div class="nombre">Plan de Acción</div>
+                <div class="descripcion">Ejecución y seguimiento</div>
+            </div>
+        </div>
+
+        <!-- Validación continua -->
+        <div style="text-align: center; margin-top: 1.2rem;">
+            <div style="display: inline-block; background: #e1ebfa; padding: 0.4rem 2.2rem; border-radius: 40px; font-weight: 600; color: #0a2b5a; font-size: 0.95rem;">
+                ⚡ Validación continua con <strong>Misión</strong> y <strong>Visión</strong>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  LÍNEA DE TIEMPO DETALLADA CON HITOS                         -->
+    <!-- ============================================================ -->
+    <h2>⏳ Línea de tiempo · Hitos detallados</h2>
+
+    <div class="timeline">
+
+        <!-- Hito 1: Diagnóstico -->
+        <div class="timeline-item">
+            <div class="marca">1</div>
+            <div class="contenido">
+                <div class="titulo">
+                    <span>🔍 Diagnóstico</span>
+                    <span class="badge">Hito 1</span>
+                </div>
+                <div class="detalle">
+                    <p><strong>Análisis de la situación actual</strong></p>
+                    <ul>
+                        <li><strong>Análisis interno:</strong> Fortalezas y debilidades (recursos, capacidades, estructura).</li>
+                        <li><strong>Análisis externo:</strong> Oportunidades y amenazas (mercado, competencia, entorno).</li>
+                        <li><strong>Herramientas:</strong> FODA, PESTEL, 5 Fuerzas de Porter.</li>
+                        <li><strong>Identificación de brechas:</strong> Diferencia entre situación actual y deseada.</li>
+                    </ul>
+                    <p style="margin-top: 0.4rem; font-weight: 500; color: #0a2b5a;">🎯 Resultado: Base para definir objetivos.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hito 2: Objetivos -->
+        <div class="timeline-item">
+            <div class="marca">2</div>
+            <div class="contenido">
+                <div class="titulo">
+                    <span>🎯 Definición de Objetivos</span>
+                    <span class="badge">Hito 2</span>
+                </div>
+                <div class="detalle">
+                    <p><strong>Establecimiento de metas claras</strong></p>
+                    <ul>
+                        <li><strong>Objetivos estratégicos:</strong> Metas a largo plazo (3-5 años).</li>
+                        <li><strong>Objetivos tácticos:</strong> Metas a mediano plazo (1-2 años).</li>
+                        <li><strong>Objetivos operativos:</strong> Metas a corto plazo (anuales).</li>
+                        <li><strong>Criterio SMART:</strong> Específicos, Medibles, Alcanzables, Relevantes, Temporales.</li>
+                    </ul>
+                    <p style="margin-top: 0.4rem; font-weight: 500; color: #0a2b5a;">🎯 Resultado: Marco de referencia para las estrategias.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hito 3: Estrategias -->
+        <div class="timeline-item">
+            <div class="marca destacada">3</div>
+            <div class="contenido">
+                <div class="titulo">
+                    <span>📋 Formulación de Estrategias</span>
+                    <span class="badge" style="background: #d4a017;">Hito 3</span>
+                </div>
+                <div class="detalle">
+                    <p><strong>Definición de cursos de acción</strong></p>
+                    <ul>
+                        <li><strong>Estrategias corporativas:</strong> Crecimiento, diversificación, integración.</li>
+                        <li><strong>Estrategias competitivas:</strong> Liderazgo en costos, diferenciación, enfoque (Porter).</li>
+                        <li><strong>Estrategias funcionales:</strong> Marketing, finanzas, operaciones, RR.HH.</li>
+                        <li><strong>Asignación de recursos:</strong> Presupuesto, personal, tecnología.</li>
+                    </ul>
+                    <p style="margin-top: 0.4rem; font-weight: 500; color: #0a2b5a;">🎯 Resultado: Plan de acción detallado.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hito 4: Plan de Acción -->
+        <div class="timeline-item">
+            <div class="marca">4</div>
+            <div class="contenido">
+                <div class="titulo">
+                    <span>📌 Plan de Acción</span>
+                    <span class="badge">Hito 4</span>
+                </div>
+                <div class="detalle">
+                    <p><strong>Ejecución y seguimiento</strong></p>
+                    <ul>
+                        <li><strong>Implementación:</strong> Ejecución de las estrategias definidas.</li>
+                        <li><strong>Indicadores (KPIs):</strong> Medición del avance y desempeño.</li>
+                        <li><strong>Control y seguimiento:</strong> Monitoreo continuo y ajustes.</li>
+                        <li><strong>Evaluación de resultados:</strong> Comparación con objetivos establecidos.</li>
+                    </ul>
+                    <p style="margin-top: 0.4rem; font-weight: 500; color: #0a2b5a;">🎯 Resultado: Retroalimentación para el siguiente ciclo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hito 5: Validación con Misión y Visión -->
+        <div class="timeline-item">
+            <div class="marca" style="background: #d4a017;">5</div>
+            <div class="contenido">
+                <div class="titulo">
+                    <span>⚡ Validación con Misión y Visión</span>
+                    <span class="badge" style="background: #d4a017;">Hito 5</span>
+                </div>
+                <div class="detalle">
+                    <p><strong>Verificación de alineamiento</strong></p>
+                    <ul>
+                        <li><strong>Misión:</strong> ¿Las estrategias responden a la razón de ser de la organización?</li>
+                        <li><strong>Visión:</strong> ¿Las acciones nos acercan al futuro deseado?</li>
+                        <li><strong>Validación continua:</strong> En cada etapa del proceso.</li>
+                        <li><strong>Ajustes estratégicos:</strong> Correcciones para mantener el rumbo.</li>
+                    </ul>
+                    <p style="margin-top: 0.4rem; font-weight: 500; color: #0a2b5a;">🎯 Resultado: Aseguramiento de la coherencia estratégica.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  DIAGRAMA DE VALIDACIÓN CON MISIÓN Y VISIÓN                   -->
+    <!-- ============================================================ -->
+    <h2>🔄 Validación estratégica · Misión y Visión</h2>
+
+    <div class="validacion-container">
+        <div class="validacion-item">
+            <span class="icono">🎯</span>
+            <div class="label">Misión</div>
+            <div class="sub">¿Qué hacemos?</div>
+            <div class="sub" style="font-size: 0.7rem; color: #1a5bb5;">Razón de ser</div>
+        </div>
+
+        <span class="flecha-validacion">⟷</span>
+
+        <div class="circulo-central">
+            Validación <br> Estratégica
+        </div>
+
+        <span class="flecha-validacion">⟷</span>
+
+        <div class="validacion-item">
+            <span class="icono">👁️</span>
+            <div class="label">Visión</div>
+            <div class="sub">¿Dónde queremos llegar?</div>
+            <div class="sub" style="font-size: 0.7rem; color: #1a5bb5;">Aspiración futura</div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  TABLA RESUMEN DE HITOS                                       -->
+    <!-- ============================================================ -->
+    <h2>📋 Resumen de hitos del planeamiento estratégico</h2>
+
+    <div style="background: #f9fcff; border-radius: 20px; padding: 1.5rem 2rem; border: 1px solid #e3ecf7; overflow-x: auto;">
+        <table class="tabla-hitos">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Hito</th>
+                    <th>Actividades clave</th>
+                    <th>Resultado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="hito-num">1</td>
+                    <td><strong>Diagnóstico</strong></td>
+                    <td>Análisis FODA, PESTEL, 5 Fuerzas, identificación de brechas</td>
+                    <td>Base para definir objetivos</td>
+                </tr>
+                <tr>
+                    <td class="hito-num">2</td>
+                    <td><strong>Objetivos</strong></td>
+                    <td>Definición de metas estratégicas, tácticas y operativas (SMART)</td>
+                    <td>Marco de referencia para estrategias</td>
+                </tr>
+                <tr>
+                    <td class="hito-num">3</td>
+                    <td><strong>Estrategias</strong></td>
+                    <td>Estrategias corporativas, competitivas (Porter) y funcionales</td>
+                    <td>Plan de acción detallado</td>
+                </tr>
+                <tr>
+                    <td class="hito-num">4</td>
+                    <td><strong>Plan de Acción</strong></td>
+                    <td>Implementación, KPIs, control, seguimiento, evaluación</td>
+                    <td>Retroalimentación para el siguiente ciclo</td>
+                </tr>
+                <tr>
+                    <td class="hito-num" style="color: #d4a017;">5</td>
+                    <td><strong>Validación con Misión y Visión</strong></td>
+                    <td>Verificación de alineamiento en cada etapa, ajustes estratégicos</td>
+                    <td>Coherencia estratégica asegurada</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  CONCLUSIÓN                                                   -->
+    <!-- ============================================================ -->
+    <div style="background: #e9f0fc; border-radius: 20px; padding: 1.5rem 2rem; margin-top: 2rem; border-left: 8px solid #1a5bb5;">
+        <p style="font-size: 1.1rem;"><strong>✅ Conclusión</strong></p>
+        <p>
+            El <strong>planeamiento estratégico</strong> es un proceso cíclico y dinámico que consta de <strong>cinco hitos fundamentales</strong>:
+            <strong>Diagnóstico → Objetivos → Estrategias → Plan de Acción</strong>, con una <strong>validación continua</strong> 
+            basada en la <strong>Misión y la Visión</strong>.
+        </p>
+        <p style="margin-top: 0.5rem;">
+            Cada hito es <strong>crítico</strong> para el éxito del proceso, y la <strong>retroalimentación</strong> entre ellos 
+            asegura que la organización se mantenga alineada con su propósito y su rumbo futuro.
+        </p>
+        <p style="margin-top: 0.5rem; font-weight: 600; color: #0a2b5a;">
+            ⚠️ La <strong>validación con Misión y Visión</strong> no es un paso aislado, sino un <strong>filtro continuo</strong> 
+            que asegura la coherencia estratégica en todo momento.
+        </p>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  FOOTER                                                       -->
+    <!-- ============================================================ -->
+    <div style="margin-top: 2.5rem; background: #f2f7ff; padding: 0.8rem 2rem; border-radius: 60px; text-align: center; font-weight: 500; color: #1a4b8a; border: 1px solid #c9daf5; font-size: 0.9rem;">
+        ✅ Proceso de Planeamiento Estratégico · Hitos más importantes · Explicación gráfica
+    </div>
+
+</div>
+</body>
+</html>
+```
 ```
