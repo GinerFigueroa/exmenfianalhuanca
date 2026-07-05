@@ -1,0 +1,952 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Examen resuelto · Planeamiento Estratégico</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f2f4f8;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      padding: 2rem 1rem;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    .examen-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+      padding: 2.5rem 2.8rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      border-bottom: 4px solid #2563eb;
+      padding-bottom: 0.6rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #0b1e3a;
+    }
+
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #475569;
+      margin-left: auto;
+      background: #eef2ff;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2.2rem;
+      margin-bottom: 1rem;
+      padding-left: 0.75rem;
+      border-left: 6px solid #2563eb;
+      color: #0f2b5c;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem 0;
+      color: #1e3a5f;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .seccion {
+      background: #fafcff;
+      border-radius: 20px;
+      padding: 1.5rem 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #e9edf4;
+    }
+
+    .pregunta {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1rem 1.6rem;
+      margin-bottom: 1rem;
+      border-left: 4px solid #3b82f6;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .pregunta strong {
+      color: #0b2b5a;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .respuesta {
+      color: #1e293b;
+      margin-top: 0.4rem;
+      padding-left: 0.4rem;
+      border-left: 2px solid #d1d9e6;
+      padding-left: 1rem;
+    }
+
+    .respuesta ul, .respuesta ol {
+      padding-left: 1.6rem;
+      margin: 0.5rem 0;
+    }
+
+    .respuesta li {
+      margin-bottom: 0.25rem;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e4b8a;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.1rem 0.8rem;
+      border-radius: 40px;
+      letter-spacing: 0.3px;
+    }
+
+    .tabla-comparativa {
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    th {
+      background: #eef2ff;
+      color: #1e3a5f;
+      font-weight: 600;
+      padding: 0.9rem 0.8rem;
+      text-align: left;
+      border-bottom: 2px solid #b9c8e6;
+    }
+
+    td {
+      padding: 0.8rem 0.8rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge {
+      background: #2563eb;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    .caso-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0;
+    }
+
+    .caso-card {
+      background: #f8faff;
+      border-radius: 14px;
+      padding: 0.8rem 1rem;
+      border: 1px solid #e2eaf5;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .caso-card .nombre {
+      font-weight: 700;
+      color: #0b2b5a;
+    }
+
+    .caso-card .estrategia {
+      font-weight: 500;
+      color: #2563eb;
+    }
+
+    .footer-nota {
+      margin-top: 2.5rem;
+      background: #f0f4fe;
+      padding: 1rem 1.8rem;
+      border-radius: 40px;
+      color: #1e3a5f;
+      font-weight: 500;
+      border: 1px solid #d0def5;
+      text-align: center;
+    }
+
+    hr {
+      margin: 2.2rem 0 1rem;
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, #d1dbe8, transparent);
+    }
+
+    @media (max-width: 650px) {
+      .examen-container {
+        padding: 1.5rem 1rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+        flex-wrap: wrap;
+      }
+      h1 small {
+        margin-left: 0;
+        width: 100%;
+        text-align: left;
+      }
+      .pregunta {
+        padding: 0.8rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="examen-container">
+  <h1>
+    📘 Examen resuelto · Planeamiento Estratégico
+    <small>guía de estudio</small>
+  </h1>
+
+  <!-- SECCIÓN 1 -->
+  <div class="seccion">
+    <h2>1. Verdadero o Falso · ROF y POI</h2>
+    <div class="pregunta">
+      <strong>a) El ROF es un documento en el cual se establecen las metas de la entidad.</strong>
+      <div class="respuesta"><span class="badge">Falso</span> El ROF (Reglamento de Organización y Funciones) define estructura y funciones, no metas.</div>
+    </div>
+    <div class="pregunta">
+      <strong>b) El POI son herramientas de gestión y planificación administrativa.</strong>
+      <div class="respuesta"><span class="badge">Verdadero</span> El POI (Plan Operativo Institucional) es una herramienta de gestión.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 2 -->
+  <div class="seccion">
+    <h2>2. Estrategias de China · Ratios · Capital Riesgo · OPI</h2>
+    <div class="pregunta">
+      <strong>Corresponde a las estrategias de CHINA como parte de su plan de acción:</strong>
+      <div class="respuesta">
+        <ul>
+          <li>Reforma económica y apertura al mercado.</li>
+          <li>Atracción de inversión extranjera y desarrollo de zonas económicas especiales.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pregunta">
+      <strong>Clases de ratios financieros de importancia:</strong>
+      <div class="respuesta">
+        <ul>
+          <li>Ratios de liquidez.</li>
+          <li>Ratios de solvencia o endeudamiento.</li>
+          <li>Ratios de rentabilidad.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pregunta">
+      <strong>Ratio de liquidez igual a 0.9, ¿qué significa?</strong>
+      <div class="respuesta">La empresa posee S/0.90 de activo corriente por cada S/1.00 de pasivo corriente, por lo que <strong>no tiene suficiente liquidez</strong> para cubrir todas sus obligaciones de corto plazo.</div>
+    </div>
+    <div class="pregunta">
+      <strong>¿Qué es Capital Riesgo?</strong>
+      <div class="respuesta">Financiamiento que inversionistas realizan a empresas con alto potencial de crecimiento, asumiendo mayor riesgo a cambio de una posible alta rentabilidad.</div>
+    </div>
+    <div class="pregunta">
+      <strong>¿En qué consiste una OPI?</strong>
+      <div class="respuesta">Oferta Pública Inicial: una empresa vende por primera vez sus acciones al público en la bolsa de valores para obtener financiamiento.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3 -->
+  <div class="seccion">
+    <h2>3. Integración Horizontal (IH) e Integración Vertical (IV)</h2>
+    <div class="pregunta">
+      <strong>Integración Horizontal</strong>
+      <div class="respuesta">Adquirir o fusionarse con empresas del mismo nivel o sector para aumentar participación de mercado y reducir competencia.</div>
+    </div>
+    <div class="pregunta">
+      <strong>Integración Vertical</strong>
+      <div class="respuesta">Integrar actividades de la cadena de suministro: hacia atrás (proveedores) o hacia adelante (clientes).</div>
+    </div>
+    <div class="pregunta">
+      <strong>Ventaja principal de la Integración Vertical</strong>
+      <div class="respuesta">
+        <ul>
+          <li>Reduce costos.</li>
+          <li>Mayor control de la producción y distribución.</li>
+          <li>Asegura el abastecimiento.</li>
+          <li>Incrementa la eficiencia y la calidad.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 4 Casos clásicos -->
+  <div class="seccion">
+    <h2>4. Casos: Toyota · Skullcandy · Tata · IKEA · Airborne Express</h2>
+    <div class="pregunta">
+      <strong>Toyota · Estrategia de Porter</strong>
+      <div class="respuesta"><span class="badge">Liderazgo en costos</span> Crisis del petróleo (70s) impulsó demanda de vehículos pequeños y económicos en EE.UU.</div>
+    </div>
+    <div class="pregunta">
+      <strong>Skullcandy · Estrategia de Porter</strong>
+      <div class="respuesta"><span class="badge">Diferenciación</span> Estrategia de marketing: marca juvenil, diseños llamativos, patrocinio de deportistas y músicos.</div>
+    </div>
+    <div class="pregunta">
+      <strong>Tata · Estrategia de Porter</strong>
+      <div class="respuesta"><span class="badge">Liderazgo en costos</span> Sectores: acero, automotriz, TI, energía, telecomunicaciones, hotelería, consumo, servicios financieros.</div>
+    </div>
+    <div class="pregunta">
+      <strong>IKEA · Estrategia de Porter</strong>
+      <div class="respuesta"><span class="badge">Diferenciación</span> Problema en EE.UU.: muebles demasiado pequeños para el mercado local; rediseñaron productos.</div>
+    </div>
+    <div class="pregunta">
+      <strong>Airborne Express · Estrategia de Porter</strong>
+      <div class="respuesta"><span class="badge">Liderazgo en costos (enfoque)</span> Software FOCUS: optimizar seguimiento de envíos, control logístico y eficiencia operativa.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 5 Corea del Sur -->
+  <div class="seccion">
+    <h2>5. Principales estrategias de Corea del Sur</h2>
+    <div class="respuesta">
+      <ul>
+        <li>Inversión masiva en educación y capital humano.</li>
+        <li>Industrialización orientada a exportaciones.</li>
+        <li>Apoyo estatal a grandes conglomerados (Chaebols).</li>
+        <li>Desarrollo tecnológico e innovación.</li>
+        <li>Construcción de infraestructura y modernización rural.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 6 GLORIA + 5 fuerzas -->
+  <div class="seccion">
+    <h2>6. Caso GLORIA · Planeamiento estratégico y 5 fuerzas de Porter</h2>
+    <div class="pregunta">
+      <strong>Planeamiento estratégico para su crecimiento y consolidación</strong>
+      <div class="respuesta">
+        <ul>
+          <li>Diversificación de productos.</li>
+          <li>Integración vertical de la cadena láctea.</li>
+          <li>Expansión nacional e internacional.</li>
+          <li>Fortalecimiento de la marca.</li>
+          <li>Innovación constante y mejora de procesos.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pregunta">
+      <strong>Participación de mercado</strong>
+      <div class="respuesta">Aproximadamente 75%–80% del mercado de leche evaporada en el Perú (según año del caso).</div>
+    </div>
+
+    <h3>🔍 Cinco Fuerzas de Porter · caso GLORIA (explicado)</h3>
+    <div class="pregunta">
+      <strong>1. Rivalidad entre competidores (Media)</strong>
+      <div class="respuesta">Gloria compite con Laive y Nestlé, pero mantiene liderazgo gracias a su marca, distribución y participación de mercado. La rivalidad existe pero no desplaza su posición.</div>
+    </div>
+    <div class="pregunta">
+      <strong>2. Amenaza de nuevos competidores (Baja)</strong>
+      <div class="respuesta">Altas barreras de entrada: inversión en plantas, tecnología, transporte refrigerado, marketing y red de distribución consolidada de Gloria.</div>
+    </div>
+    <div class="pregunta">
+      <strong>3. Poder de negociación de proveedores (Bajo)</strong>
+      <div class="respuesta">Gloria compra a numerosos ganaderos; ningún proveedor tiene poder individual para imponer condiciones. Capacidad de diversificar fuentes.</div>
+    </div>
+    <div class="pregunta">
+      <strong>4. Poder de negociación de clientes (Medio)</strong>
+      <div class="respuesta">Supermercados negocian volúmenes, pero los consumidores son fieles a la marca Gloria, lo que limita la presión de los compradores.</div>
+    </div>
+    <div class="pregunta">
+      <strong>5. Amenaza de productos sustitutos (Media)</strong>
+      <div class="respuesta">Leches vegetales, leche fresca, en polvo, pero la leche evaporada mantiene alta demanda en hogares peruanos.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 7: Comparación de ambientes + casos integrados -->
+  <div class="seccion">
+    <h2>📊 Comparación de ambientes de negocio</h2>
+    <div class="tabla-comparativa">
+      <table>
+        <thead><tr><th>Aspecto</th><th>Ambiente anterior</th><th>Ambiente contemporáneo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Producción</strong></td><td>Manufactura en masa, grandes inventarios, ciclo largo, enfoque corto plazo.</td><td>Producción bajo demanda (JIT), inventarios reducidos, ciclo corto, enfoque largo plazo.</td></tr>
+          <tr><td><strong>Marketing</strong></td><td>Productos duraderos, poca diversidad, lanzamientos lentos.</td><td>Innovación constante, productos diversificados, mejoras frecuentes, competencia intensa.</td></tr>
+          <tr><td><strong>Organización administrativa</strong></td><td>Técnico, basado en EEFF positivos a corto plazo.</td><td>Estratégico, visión del CEO, evaluación de ratios a largo plazo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>📁 Análisis de casos (estrategias Porter)</h2>
+    <div class="caso-grid">
+      <div class="caso-card"><span class="nombre">Airborne Express</span> <span class="estrategia">Liderazgo en costos</span> – aeropuerto propio, depósitos tipo C.</div>
+      <div class="caso-card"><span class="nombre">Skullcandy</span> <span class="estrategia">Segmentación</span> – dos líneas de distribución, colaboración con celebridades.</div>
+      <div class="caso-card"><span class="nombre">Starbucks</span> <span class="estrategia">Diferenciación</span> – crisis 2008: Schultz reforzó calidad y experiencia.</div>
+      <div class="caso-card"><span class="nombre">Toyota</span> <span class="estrategia">Liderazgo en costos</span> (Kanban, Lean) – fracaso inicial en EE.UU. por autos grandes; crisis financiera favoreció autos económicos.</div>
+      <div class="caso-card"><span class="nombre">Apple</span> <span class="estrategia">Diferenciación</span> – Steve Jobs adquirió empresas innovadoras para reforzar diferenciación.</div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 8: Exámenes integrados / repaso -->
+  <div class="seccion">
+    <h2>📑 Exámenes integrados · preguntas clave</h2>
+    <div class="pregunta">
+      <strong>Responsable de estrategia →</strong> <span class="respuesta" style="border-left:none; padding-left:0;">CEO</span>
+    </div>
+    <div class="pregunta">
+      <strong>Objetivo Finanzas →</strong> <span class="respuesta" style="border-left:none; padding-left:0;">maximizar beneficios</span>
+    </div>
+    <div class="pregunta">
+      <strong>Objetivo Operaciones →</strong> <span class="respuesta" style="border-left:none; padding-left:0;">ROI de activos fijos</span>
+    </div>
+    <div class="pregunta">
+      <strong>Ratio de liquidez 0.8 →</strong> <span class="respuesta" style="border-left:none; padding-left:0;">capacidad limitada de pago inmediato.</span>
+    </div>
+    <div class="pregunta">
+      <strong>Proceso de planeamiento estratégico →</strong> <span class="respuesta" style="border-left:none; padding-left:0;">Diagnóstico → Objetivos → Estrategias → Plan de acción. Se valida con misión y visión.</span>
+    </div>
+    <div class="pregunta">
+      <strong>ROE = 25% · ROA = 16.7%</strong> (cálculos de referencia)
+    </div>
+  </div>
+
+  <!-- Sección extra: Southwest, FedEx, UPS, DHL -->
+  <div class="seccion">
+    <h2>✈️ Casos adicionales: Southwest, FedEx, UPS, DHL</h2>
+    <div class="caso-grid">
+      <div class="caso-card"><span class="nombre">Southwest Airlines</span> <span class="estrategia">Liderazgo en costos</span> – expansión nacional con vuelos de bajo costo.</div>
+      <div class="caso-card"><span class="nombre">FedEx, UPS, DHL</span> <span class="estrategia">Diferenciación / liderazgo en costos</span> – expansión global, comercio internacional y tecnología logística.</div>
+      <div class="caso-card"><span class="nombre">Airborne Express</span> <span class="estrategia">Enfoque + costos bajos</span> – nichos corporativos, aeropuerto propio.</div>
+    </div>
+    <div class="respuesta" style="margin-top:0.8rem;">
+      <p><strong>Factores externos:</strong> demanda de vuelos baratos (Southwest), globalización (FedEx/UPS/DHL), mercado competitivo (Airborne).</p>
+      <p><strong>Respuesta a crisis:</strong> reducción de costos, innovación tecnológica, especialización en clientes empresariales.</p>
+    </div>
+  </div>
+
+  <!-- NOTA FINAL -->
+  <div class="footer-nota">
+    ✅ Respuestas de nivel universitario · Basado en los casos vistos en clase (Toyota, Skullcandy, Tata, IKEA, Airborne, Gloria, Southwest, FedEx, UPS, DHL, Starbucks, Apple).
+  </div>
+</div>
+</body>
+</html>
+
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Resuelto · 5 Fuerzas de Porter · Caso GLORIA</title>
+    <style>
+        /* ----- RESET Y BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4fa;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 2rem 1rem;
+            color: #0b1e33;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 30px 55px -20px rgba(0, 20, 50, 0.3);
+            padding: 2.8rem 3rem;
+        }
+
+        /* ----- ENCABEZADOS ----- */
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            border-bottom: 5px solid #1a5bb5;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2.2rem;
+            color: #06204a;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 500;
+            background: #e1ebfa;
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            color: #1a4b8a;
+            letter-spacing: 0.3px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 650;
+            margin-top: 2.6rem;
+            margin-bottom: 1.2rem;
+            padding-left: 1rem;
+            border-left: 8px solid #1a5bb5;
+            color: #0a2b5a;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 650;
+            margin: 1.8rem 0 0.6rem 0;
+            color: #103c70;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ----- TARJETAS / SECCIONES ----- */
+        .seccion {
+            background: #f9fcff;
+            border-radius: 24px;
+            padding: 1.8rem 2rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #e3ecf7;
+            box-shadow: 0 2px 8px rgba(0, 20, 40, 0.02);
+        }
+
+        /* ----- PREGUNTAS Y RESPUESTAS ----- */
+        .fuerza-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 1.2rem 1.8rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #2563eb;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+            transition: 0.1s ease;
+        }
+
+        .fuerza-card .titulo {
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+            margin-bottom: 0.3rem;
+        }
+
+        .fuerza-card .titulo strong {
+            font-size: 1.2rem;
+            color: #0f3263;
+        }
+
+        .fuerza-card .nivel {
+            background: #1a5bb5;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .fuerza-card .nivel.media { background: #b58a1a; }
+        .fuerza-card .nivel.bajo { background: #1f7b4d; }
+        .fuerza-card .nivel.alto { background: #b53b3b; }
+
+        .fuerza-card .explicacion {
+            margin-top: 0.4rem;
+            padding-left: 0.2rem;
+        }
+
+        .fuerza-card .explicacion ul {
+            list-style: disc;
+            padding-left: 1.8rem;
+            margin: 0.5rem 0;
+        }
+
+        .fuerza-card .explicacion li {
+            margin-bottom: 0.2rem;
+        }
+
+        .badge-conclusion {
+            display: inline-block;
+            background: #e6effb;
+            color: #103c70;
+            font-weight: 600;
+            padding: 0.1rem 1rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+        }
+
+        /* ----- TABLA RESUMEN ----- */
+        .tabla-wrapper {
+            overflow-x: auto;
+            margin: 1.2rem 0 0.5rem;
+            border-radius: 18px;
+            border: 1px solid #dae3f0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            background: white;
+        }
+
+        th {
+            background: #e3edfc;
+            color: #0a2b5a;
+            font-weight: 650;
+            padding: 0.9rem 1rem;
+            text-align: left;
+            border-bottom: 2px solid #b9ceea;
+        }
+
+        td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #dfe8f3;
+            vertical-align: top;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .tag-eval {
+            display: inline-block;
+            background: #1a5bb5;
+            color: white;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.15rem 1rem;
+            border-radius: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        .tag-eval.media { background: #b58a1a; }
+        .tag-eval.bajo { background: #1f7b4d; }
+        .tag-eval.alto { background: #b53b3b; }
+
+        /* ----- CONCLUSION FINAL ----- */
+        .conclusion-final {
+            background: #e9f0fc;
+            border-radius: 20px;
+            padding: 1.6rem 2rem;
+            margin-top: 2rem;
+            border-left: 8px solid #1a5bb5;
+            font-weight: 500;
+            color: #06204a;
+        }
+
+        .conclusion-final strong {
+            color: #0a2b5a;
+        }
+
+        .footer-extra {
+            margin-top: 2.8rem;
+            background: #f2f7ff;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            text-align: center;
+            font-weight: 500;
+            color: #1a4b8a;
+            border: 1px solid #c9daf5;
+            font-size: 0.95rem;
+        }
+
+        hr {
+            margin: 2.4rem 0 1rem;
+            border: 0;
+            height: 2px;
+            background: linear-gradient(to right, #c5d5ec, transparent);
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h1 small {
+                font-size: 0.8rem;
+                padding: 0.2rem 1rem;
+                margin-top: 0.3rem;
+            }
+            .fuerza-card {
+                padding: 1rem 1rem;
+            }
+            .seccion {
+                padding: 1rem 1rem;
+            }
+            .fuerza-card .titulo {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- ======== TÍTULO PRINCIPAL ======== -->
+    <h1>
+        🔍 Caso GLORIA · 5 Fuerzas de Porter
+        <small>explicación completa · nivel examen</small>
+    </h1>
+
+    <!-- ======== INTRO ======== -->
+    <div style="background: #eef5ff; border-radius: 18px; padding: 1.2rem 1.8rem; margin-bottom: 2rem; border: 1px solid #ccdef5;">
+        <p style="font-weight: 500; color: #0f3263;">
+            <strong>Las 5 Fuerzas Competitivas de Porter</strong> aplicadas al mercado lácteo peruano, 
+            con el liderazgo de <strong>GLORIA</strong> como eje central. Cada fuerza se evalúa y explica 
+            con argumentos sólidos para una respuesta de examen universitario.
+        </p>
+    </div>
+
+    <!-- ======== SECCIÓN: 5 FUERZAS ======== -->
+    <div class="seccion">
+
+        <!-- FUERZA 1 -->
+        <div class="fuerza-card">
+            <div class="titulo">
+                <strong>1. Rivalidad entre competidores</strong>
+                <span class="nivel media">Media</span>
+            </div>
+            <div class="explicacion">
+                <p><strong>¿Por qué?</strong></p>
+                <ul>
+                    <li>Gloria compite directamente con <strong>Laive</strong> y <strong>Nestlé</strong> en el mercado de productos lácteos.</li>
+                    <li>También existen marcas regionales y pequeñas empresas locales.</li>
+                    <li>Sin embargo, Gloria <strong>lidera el mercado</strong> con una participación aproximada del <strong>75%–80%</strong> en leche evaporada.</li>
+                    <li>Su ventaja competitiva se basa en:
+                        <ul>
+                            <li><strong>Marca consolidada</strong> y reconocida.</li>
+                            <li><strong>Amplia red de distribución</strong> a nivel nacional.</li>
+                            <li><strong>Calidad constante</strong> y confianza del consumidor.</li>
+                            <li><strong>Economías de escala</strong> que le permiten tener precios competitivos.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="badge-conclusion">✅ Conclusión: La rivalidad existe, pero <strong>no es extrema</strong> porque Gloria tiene una posición dominante que le permite manejar la competencia sin perder su liderazgo.</div>
+            </div>
+        </div>
+
+        <!-- FUERZA 2 -->
+        <div class="fuerza-card">
+            <div class="titulo">
+                <strong>2. Poder de negociación de los proveedores</strong>
+                <span class="nivel bajo">Bajo</span>
+            </div>
+            <div class="explicacion">
+                <p><strong>¿Por qué?</strong></p>
+                <ul>
+                    <li>Los principales proveedores son <strong>ganaderos</strong> que suministran leche fresca y otros insumos.</li>
+                    <li>Gloria trabaja con <strong>un gran número de productores</strong> a nivel nacional.</li>
+                    <li>Ningún proveedor individual tiene el poder de imponer precios o condiciones porque:
+                        <ul>
+                            <li>Gloria puede <strong>diversificar sus fuentes</strong> de abastecimiento.</li>
+                            <li>La empresa tiene <strong>capacidad de negociación</strong> por el volumen de compra.</li>
+                            <li>Gloria ofrece <strong>asistencia técnica y estabilidad</strong> a los ganaderos, lo que genera relaciones de largo plazo.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="badge-conclusion">✅ Conclusión: El poder de los proveedores es <strong>bajo</strong>, ya que Gloria tiene múltiples opciones y mayor capacidad de negociación.</div>
+            </div>
+        </div>
+
+        <!-- FUERZA 3 -->
+        <div class="fuerza-card">
+            <div class="titulo">
+                <strong>3. Poder de negociación de los clientes</strong>
+                <span class="nivel media">Medio</span>
+            </div>
+            <div class="explicacion">
+                <p><strong>¿Por qué?</strong></p>
+                <ul>
+                    <li>Los clientes incluyen:
+                        <ul>
+                            <li><strong>Supermercados</strong> (Wong, Plaza Vea, Tottus).</li>
+                            <li><strong>Mayoristas y distribuidores</strong>.</li>
+                            <li><strong>Bodegas y tiendas de barrio</strong>.</li>
+                            <li><strong>Consumidores finales</strong>.</li>
+                        </ul>
+                    </li>
+                    <li>Los <strong>supermercados</strong> pueden negociar descuentos y promociones por comprar grandes volúmenes.</li>
+                    <li>Sin embargo, <strong>muchos consumidores son fieles a la marca Gloria</strong> por:
+                        <ul>
+                            <li>Confianza y calidad.</li>
+                            <li>Tradición familiar.</li>
+                            <li>Disponibilidad en todos los puntos de venta.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="badge-conclusion">✅ Conclusión: El poder de los clientes es <strong>medio</strong>, porque si bien los grandes compradores tienen capacidad de presión, la <strong>fortaleza de la marca</strong> limita ese poder y mantiene la demanda.</div>
+            </div>
+        </div>
+
+        <!-- FUERZA 4 -->
+        <div class="fuerza-card">
+            <div class="titulo">
+                <strong>4. Amenaza de productos sustitutos</strong>
+                <span class="nivel media">Media</span>
+            </div>
+            <div class="explicacion">
+                <p><strong>¿Por qué?</strong></p>
+                <ul>
+                    <li>Existen productos que pueden reemplazar a la leche evaporada:
+                        <ul>
+                            <li><strong>Leche fresca</strong> (pasteurizada).</li>
+                            <li><strong>Leche en polvo</strong>.</li>
+                            <li><strong>Bebidas vegetales</strong> (soya, almendra, avena, coco).</li>
+                            <li><strong>Leches saborizadas</strong> y otras alternativas.</li>
+                        </ul>
+                    </li>
+                    <li>Sin embargo:
+                        <ul>
+                            <li>La <strong>leche evaporada</strong> es un producto de <strong>larga duración</strong> y muy utilizado en la <strong>cocina peruana</strong> (preparaciones, postres, bebidas calientes).</li>
+                            <li>Tiene un <strong>precio accesible</strong> y está disponible en todo el país.</li>
+                            <li>El consumidor peruano tiene una <strong>fuerte preferencia</strong> por este formato.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="badge-conclusion">✅ Conclusión: La amenaza de sustitutos es <strong>media</strong>, porque aunque existen alternativas, la leche evaporada de Gloria sigue siendo la opción preferida por los hogares peruanos.</div>
+            </div>
+        </div>
+
+        <!-- FUERZA 5 -->
+        <div class="fuerza-card">
+            <div class="titulo">
+                <strong>5. Amenaza de nuevos competidores</strong>
+                <span class="nivel bajo">Baja</span>
+            </div>
+            <div class="explicacion">
+                <p><strong>¿Por qué?</strong></p>
+                <ul>
+                    <li>Para ingresar al mercado lácteo se necesitan <strong>altas inversiones</strong> en:
+                        <ul>
+                            <li>Plantas de procesamiento y tecnología.</li>
+                            <li>Cadena de frío y transporte refrigerado.</li>
+                            <li>Centros de distribución.</li>
+                            <li>Campañas de marketing y publicidad.</li>
+                            <li>Permisos sanitarios y certificaciones.</li>
+                        </ul>
+                    </li>
+                    <li>Gloria tiene <strong>barreras de entrada</strong> muy sólidas:
+                        <ul>
+                            <li><strong>Marca posicionada</strong> con décadas de historia.</li>
+                            <li><strong>Red de distribución</strong> que llega a todo el Perú.</li>
+                            <li><strong>Relaciones estables</strong> con proveedores y clientes.</li>
+                            <li><strong>Economías de escala</strong> que le permiten mantener precios competitivos.</li>
+                            <li><strong>Innovación constante</strong> en productos y procesos.</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="badge-conclusion">✅ Conclusión: La amenaza de nuevos competidores es <strong>baja</strong>, ya que las barreras de entrada son muy altas y Gloria tiene una ventaja competitiva difícil de igualar.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ======== TABLA RESUMEN ======== -->
+    <div class="seccion" style="background: #f8fbff;">
+        <h2 style="margin-top: 0; border-left-color: #1a5bb5;">📊 Tabla resumen · para el examen</h2>
+        <div class="tabla-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fuerza de Porter</th>
+                        <th>Evaluación</th>
+                        <th>Explicación breve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rivalidad entre competidores</strong></td>
+                        <td><span class="tag-eval media">Media</span></td>
+                        <td>Compite con Laive y Nestlé, pero Gloria lidera el mercado con marca y distribución.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poder de proveedores</strong></td>
+                        <td><span class="tag-eval bajo">Bajo</span></td>
+                        <td>Gloria compra a muchos ganaderos y tiene capacidad de negociación.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Poder de clientes</strong></td>
+                        <td><span class="tag-eval media">Medio</span></td>
+                        <td>Supermercados negocian, pero los consumidores son fieles a la marca.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amenaza de sustitutos</strong></td>
+                        <td><span class="tag-eval media">Media</span></td>
+                        <td>Existen leches vegetales y frescas, pero la leche evaporada sigue siendo muy demandada.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Amenaza de nuevos entrantes</strong></td>
+                        <td><span class="tag-eval bajo">Baja</span></td>
+                        <td>Se requiere alta inversión y posicionamiento; Gloria tiene ventajas difíciles de superar.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ======== CONCLUSIÓN FINAL ======== -->
+    <div class="conclusion-final">
+        <p style="font-size: 1.1rem;">
+            <strong>✅ CONCLUSIÓN FINAL PARA EL EXAMEN</strong>
+        </p>
+        <p style="margin-top: 0.5rem;">
+            El éxito de Gloria se explica porque ha desarrollado <strong>ventajas competitivas sostenibles</strong>: 
+            marca fuerte, amplia cobertura de distribución, integración con proveedores, innovación constante y economías de escala. 
+            Estas fortalezas le permiten mantener su <strong>liderazgo</strong> en el mercado a pesar de la competencia y la existencia de productos sustitutos.
+        </p>
+    </div>
+
+    <!-- ======== FOOTER ======== -->
+    <div class="footer-extra">
+        ✅ Respuesta con nivel universitario · Caso GLORIA · 5 Fuerzas de Porter completamente explicadas.
+    </div>
+
+</div>
+</body>
+</html>
