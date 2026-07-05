@@ -463,7 +463,6 @@
 </html>
 
 
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -950,3 +949,732 @@
 </div>
 </body>
 </html>
+
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulacro de Examen · 20 Preguntas · Planeamiento Estratégico</title>
+    <style>
+        /* ----- RESET Y BASE ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4fa;
+            font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+            padding: 2rem 1rem;
+            color: #0b1e33;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 36px;
+            box-shadow: 0 30px 55px -20px rgba(0, 20, 50, 0.3);
+            padding: 2.8rem 3rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            border-bottom: 5px solid #1a5bb5;
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #06204a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 500;
+            background: #e1ebfa;
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            color: #1a4b8a;
+        }
+
+        .instrucciones {
+            background: #eef5ff;
+            border-radius: 16px;
+            padding: 1rem 1.8rem;
+            margin-bottom: 2rem;
+            border: 1px solid #ccdef5;
+            color: #0f3263;
+        }
+
+        .instrucciones strong {
+            color: #06204a;
+        }
+
+        /* ----- PREGUNTAS ----- */
+        .pregunta {
+            background: #f9fcff;
+            border-radius: 18px;
+            padding: 1.4rem 1.8rem;
+            margin-bottom: 1.3rem;
+            border: 1px solid #e3ecf7;
+            transition: 0.1s ease;
+        }
+
+        .pregunta:hover {
+            border-color: #b8ceea;
+            background: #fcfdff;
+        }
+
+        .pregunta .enunciado {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #0a2b5a;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .pregunta .enunciado .num {
+            background: #1a5bb5;
+            color: white;
+            font-weight: 700;
+            font-size: 0.8rem;
+            padding: 0.1rem 0.9rem;
+            border-radius: 40px;
+            min-width: 34px;
+            text-align: center;
+        }
+
+        .pregunta .opciones {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.3rem 1.5rem;
+            padding-left: 0.2rem;
+        }
+
+        .pregunta .opciones .opcion {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .pregunta .opciones .opcion input[type="radio"] {
+            accent-color: #1a5bb5;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .pregunta .opciones .opcion label {
+            cursor: pointer;
+            color: #1a2f4a;
+        }
+
+        .pregunta .respuesta-correcta {
+            margin-top: 0.6rem;
+            padding: 0.5rem 1rem;
+            background: #e6f0e6;
+            border-left: 5px solid #1f7b4d;
+            border-radius: 10px;
+            display: none;
+            font-size: 0.95rem;
+            color: #0a3d1f;
+        }
+
+        .pregunta .respuesta-correcta.mostrar {
+            display: block;
+        }
+
+        .pregunta .respuesta-correcta strong {
+            color: #0a2b5a;
+        }
+
+        .pregunta .respuesta-correcta .explica {
+            color: #1a4b3a;
+            margin-top: 0.2rem;
+            font-weight: 450;
+        }
+
+        /* ----- BOTONES ----- */
+        .acciones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.8rem;
+            justify-content: center;
+        }
+
+        .btn {
+            background: white;
+            border: 2px solid #1a5bb5;
+            color: #1a5bb5;
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: 0.15s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .btn:hover {
+            background: #1a5bb5;
+            color: white;
+            box-shadow: 0 6px 14px rgba(26, 91, 181, 0.25);
+            transform: scale(1.01);
+        }
+
+        .btn.secundario {
+            border-color: #7f9bc9;
+            color: #1a4b8a;
+            background: #f2f7ff;
+        }
+
+        .btn.secundario:hover {
+            background: #d4e2fa;
+            border-color: #1a5bb5;
+            color: #06204a;
+        }
+
+        .btn.verde {
+            border-color: #1f7b4d;
+            color: #1f7b4d;
+        }
+
+        .btn.verde:hover {
+            background: #1f7b4d;
+            color: white;
+        }
+
+        .btn.rojo {
+            border-color: #b53b3b;
+            color: #b53b3b;
+        }
+
+        .btn.rojo:hover {
+            background: #b53b3b;
+            color: white;
+        }
+
+        .resultado {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 1rem;
+            background: #e3edfc;
+            border-radius: 60px;
+            margin-top: 1.5rem;
+            color: #0a2b5a;
+            border: 1px solid #c5d5ec;
+        }
+
+        .footer-extra {
+            margin-top: 2.5rem;
+            background: #f2f7ff;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            text-align: center;
+            font-weight: 500;
+            color: #1a4b8a;
+            border: 1px solid #c9daf5;
+            font-size: 0.9rem;
+        }
+
+        /* ----- RESPONSIVE ----- */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.2rem 1rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h1 small {
+                font-size: 0.7rem;
+                padding: 0.2rem 1rem;
+                margin-top: 0.3rem;
+            }
+            .pregunta {
+                padding: 1rem 1rem;
+            }
+            .pregunta .opciones {
+                grid-template-columns: 1fr;
+                gap: 0.1rem;
+            }
+            .acciones .btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>
+        📘 Simulacro de Examen
+        <small>20 preguntas · alternativas</small>
+    </h1>
+
+    <div class="instrucciones">
+        <strong>Instrucciones:</strong> Selecciona la opción correcta para cada pregunta. 
+        Al final, presiona <strong>"Ver respuestas"</strong> para comprobar tus aciertos.
+        También puedes <strong>"Mostrar todas"</strong> o <strong>"Ocultar todas"</strong> las respuestas.
+    </div>
+
+    <!-- ===== CONTENEDOR DE PREGUNTAS ===== -->
+    <div id="preguntas-container"></div>
+
+    <!-- ===== BOTONES ===== -->
+    <div class="acciones">
+        <button class="btn" id="btnVerRespuestas">✅ Ver respuestas</button>
+        <button class="btn secundario" id="btnMostrarTodas">📖 Mostrar todas</button>
+        <button class="btn secundario" id="btnOcultarTodas">📕 Ocultar todas</button>
+        <button class="btn rojo" id="btnLimpiar">🧹 Limpiar selección</button>
+    </div>
+
+    <!-- ===== RESULTADO ===== -->
+    <div class="resultado" id="resultado">
+        🔹 Selecciona tus respuestas y presiona "Ver respuestas"
+    </div>
+
+    <div class="footer-extra">
+        ✅ Basado en los casos vistos: Toyota, Skullcandy, Tata, IKEA, Airborne Express, Gloria, Southwest, FedEx, UPS, Starbucks, Apple.
+    </div>
+
+</div>
+
+<script>
+    (function() {
+        // ============================================================
+        //  BASE DE DATOS: 20 PREGUNTAS CON ALTERNATIVAS
+        // ============================================================
+        const preguntas = [
+            // 1
+            {
+                id: 1,
+                enunciado: '¿Cuál es la estrategia de Porter que aplica Toyota según el caso?',
+                opciones: [
+                    'Diferenciación',
+                    'Liderazgo en costos',
+                    'Enfoque en nicho',
+                    'Segmentación'
+                ],
+                correcta: 1, // índice 0-based
+                explicacion: 'Toyota aplica Liderazgo en costos con sistemas como Kanban y Lean, además de producción eficiente.'
+            },
+            // 2
+            {
+                id: 2,
+                enunciado: '¿Qué factor externo ayudó a Toyota a posicionarse en EE.UU.?',
+                opciones: [
+                    'La guerra de Vietnam',
+                    'La crisis del petróleo de los años 70',
+                    'La burbuja inmobiliaria',
+                    'El tratado de libre comercio con Canadá'
+                ],
+                correcta: 1,
+                explicacion: 'La crisis del petróleo incrementó la demanda de vehículos pequeños y económicos, lo que favoreció a Toyota.'
+            },
+            // 3
+            {
+                id: 3,
+                enunciado: 'Skullcandy utiliza principalmente la estrategia de:',
+                opciones: [
+                    'Liderazgo en costos',
+                    'Diferenciación',
+                    'Enfoque en costos',
+                    'Integración vertical'
+                ],
+                correcta: 1,
+                explicacion: 'Skullcandy se diferencia con diseños llamativos, marketing juvenil y alianzas con deportistas y músicos.'
+            },
+            // 4
+            {
+                id: 4,
+                enunciado: 'El Grupo Tata abarca todos los siguientes sectores EXCEPTO:',
+                opciones: [
+                    'Acero y automotriz',
+                    'Tecnologías de información',
+                    'Energía y telecomunicaciones',
+                    'Biotecnología farmacéutica'
+                ],
+                correcta: 3,
+                explicacion: 'Tata tiene presencia en acero, automotriz, TI, energía, telecomunicaciones, hotelería, consumo y servicios financieros, pero NO en biotecnología farmacéutica.'
+            },
+            // 5
+            {
+                id: 5,
+                enunciado: '¿Cuál fue el problema principal de IKEA al ingresar a EE.UU.?',
+                opciones: [
+                    'Los precios eran demasiado altos',
+                    'Los muebles eran demasiado pequeños para el mercado local',
+                    'No tenían suficiente publicidad',
+                    'La calidad era muy baja'
+                ],
+                correcta: 1,
+                explicacion: 'IKEA tuvo que rediseñar parte de sus productos porque los muebles no se adaptaban a las medidas y preferencias del consumidor estadounidense.'
+            },
+            // 6
+            {
+                id: 6,
+                enunciado: 'Airborne Express desarrolló el software FOCUS para:',
+                opciones: [
+                    'Reducir el costo de combustible',
+                    'Optimizar el seguimiento de envíos y control logístico',
+                    'Gestionar las finanzas corporativas',
+                    'Crear una tienda en línea'
+                ],
+                correcta: 1,
+                explicacion: 'FOCUS permitió mejorar la eficiencia operativa y el servicio al cliente mediante un mejor control de los envíos.'
+            },
+            // 7
+            {
+                id: 7,
+                enunciado: 'En el caso Gloria, el poder de negociación de los proveedores se considera:',
+                opciones: [
+                    'Alto',
+                    'Medio',
+                    'Bajo',
+                    'Muy alto'
+                ],
+                correcta: 2,
+                explicacion: 'Gloria compra a muchos ganaderos, por lo que ningún proveedor individual tiene poder para imponer condiciones.'
+            },
+            // 8
+            {
+                id: 8,
+                enunciado: 'La amenaza de nuevos competidores en el caso Gloria es baja debido a:',
+                opciones: [
+                    'La poca demanda de lácteos',
+                    'Las altas barreras de entrada y la marca consolidada',
+                    'La falta de tecnología en el Perú',
+                    'Los altos impuestos a la importación'
+                ],
+                correcta: 1,
+                explicacion: 'Se requiere gran inversión en plantas, cadena de frío, distribución y marketing; además Gloria tiene una marca muy fuerte.'
+            },
+            // 9
+            {
+                id: 9,
+                enunciado: '¿Qué estrategia utilizó Starbucks para superar la crisis de 2008?',
+                opciones: [
+                    'Reducción masiva de precios',
+                    'Reforzar la calidad, experiencia del cliente e identidad de marca',
+                    'Cerrar tiendas en todo el mundo',
+                    'Cambiar de nombre la empresa'
+                ],
+                correcta: 1,
+                explicacion: 'Howard Schultz reforzó la diferenciación basada en calidad, experiencia y marca para recuperar el posicionamiento.'
+            },
+            // 10
+            {
+                id: 10,
+                enunciado: 'Southwest Airlines aplica una estrategia de:',
+                opciones: [
+                    'Diferenciación premium',
+                    'Liderazgo en costos',
+                    'Enfoque en lujo',
+                    'Integración horizontal agresiva'
+                ],
+                correcta: 1,
+                explicacion: 'Southwest se basa en vuelos de bajo costo, alta eficiencia y expansión nacional sin lujos innecesarios.'
+            },
+            // 11
+            {
+                id: 11,
+                enunciado: '¿Qué es una OPI (Oferta Pública Inicial)?',
+                opciones: [
+                    'Venta de acciones a inversionistas privados',
+                    'Primera venta de acciones al público en la bolsa de valores',
+                    'Préstamo bancario a largo plazo',
+                    'Fusión con otra empresa'
+                ],
+                correcta: 1,
+                explicacion: 'Una OPI es la primera vez que una empresa ofrece sus acciones al público en el mercado bursátil.'
+            },
+            // 12
+            {
+                id: 12,
+                enunciado: 'El ROE (Return on Equity) mide:',
+                opciones: [
+                    'La rentabilidad sobre los activos totales',
+                    'La rentabilidad sobre el patrimonio de los accionistas',
+                    'La liquidez de la empresa',
+                    'El endeudamiento a corto plazo'
+                ],
+                correcta: 1,
+                explicacion: 'ROE = Utilidad Neta / Patrimonio Neto. Mide la rentabilidad que genera el capital de los accionistas.'
+            },
+            // 13
+            {
+                id: 13,
+                enunciado: 'Un ratio de liquidez de 0.8 significa que la empresa:',
+                opciones: [
+                    'Tiene capacidad de pago inmediato',
+                    'Tiene capacidad limitada de pago a corto plazo',
+                    'Está en quiebra técnica',
+                    'Tiene exceso de efectivo'
+                ],
+                correcta: 1,
+                explicacion: 'Un ratio menor a 1 indica que los activos corrientes no cubren totalmente los pasivos corrientes, por lo que la capacidad de pago es limitada.'
+            },
+            // 14
+            {
+                id: 14,
+                enunciado: 'En el planeamiento estratégico, el orden correcto del proceso es:',
+                opciones: [
+                    'Objetivos → Diagnóstico → Estrategias → Plan de acción',
+                    'Diagnóstico → Objetivos → Estrategias → Plan de acción',
+                    'Estrategias → Diagnóstico → Objetivos → Plan de acción',
+                    'Plan de acción → Estrategias → Diagnóstico → Objetivos'
+                ],
+                correcta: 1,
+                explicacion: 'El proceso comienza con el diagnóstico, luego se definen objetivos, se formulan estrategias y finalmente se ejecuta el plan de acción.'
+            },
+            // 15
+            {
+                id: 15,
+                enunciado: '¿Cuál es la principal ventaja de la Integración Vertical?',
+                opciones: [
+                    'Reducir la competencia',
+                    'Mayor control de la producción y distribución, y reducción de costos',
+                    'Aumentar la variedad de productos',
+                    'Mejorar el marketing digital'
+                ],
+                correcta: 1,
+                explicacion: 'La integración vertical permite controlar la cadena de suministro, asegurar el abastecimiento y reducir costos.'
+            },
+            // 16
+            {
+                id: 16,
+                enunciado: '¿Qué sector NO pertenece al Grupo Tata?',
+                opciones: [
+                    'Acero',
+                    'Automotriz',
+                    'Bebidas gaseosas',
+                    'Tecnologías de información'
+                ],
+                correcta: 2,
+                explicacion: 'Tata no participa en el sector de bebidas gaseosas; sus sectores son acero, automotriz, TI, energía, telecomunicaciones, hotelería, consumo y servicios financieros.'
+            },
+            // 17
+            {
+                id: 17,
+                enunciado: 'En el caso Airborne Express, la estrategia de Porter aplicada es:',
+                opciones: [
+                    'Diferenciación',
+                    'Liderazgo en costos (enfoque)',
+                    'Segmentación de mercado',
+                    'Integración horizontal'
+                ],
+                correcta: 1,
+                explicacion: 'Airborne Express se enfocó en nichos corporativos con costos bajos, usando su propio aeropuerto y depósitos especiales.'
+            },
+            // 18
+            {
+                id: 18,
+                enunciado: '¿Cuál de las siguientes es una estrategia de Corea del Sur para su desarrollo?',
+                opciones: [
+                    'Proteccionismo extremo',
+                    'Industrialización orientada a exportaciones',
+                    'Dependencia total de importaciones',
+                    'Eliminación de la educación superior'
+                ],
+                correcta: 1,
+                explicacion: 'Corea del Sur impulsó su crecimiento con industrialización exportadora, inversión en educación y apoyo a los Chaebols.'
+            },
+            // 19
+            {
+                id: 19,
+                enunciado: 'La Integración Horizontal consiste en:',
+                opciones: [
+                    'Integrar actividades con proveedores',
+                    'Adquirir o fusionarse con empresas del mismo sector',
+                    'Integrar actividades con clientes',
+                    'Expandirse a nuevos países'
+                ],
+                correcta: 1,
+                explicacion: 'La integración horizontal busca aumentar participación de mercado y reducir competencia mediante fusiones o adquisiciones de empresas del mismo nivel.'
+            },
+            // 20
+            {
+                id: 20,
+                enunciado: 'En el caso Gloria, la participación de mercado en leche evaporada es aproximadamente:',
+                opciones: [
+                    '50%',
+                    '60% - 65%',
+                    '75% - 80%',
+                    '90% - 95%'
+                ],
+                correcta: 2,
+                explicacion: 'Gloria tiene una participación dominante de aproximadamente 75% a 80% del mercado de leche evaporada en el Perú.'
+            }
+        ];
+
+        // ============================================================
+        //  RENDERIZAR PREGUNTAS
+        // ============================================================
+        const container = document.getElementById('preguntas-container');
+        let html = '';
+
+        preguntas.forEach((p, index) => {
+            const letras = ['a', 'b', 'c', 'd'];
+            html += `<div class="pregunta" id="pregunta-${p.id}">`;
+            html += `<div class="enunciado"><span class="num">${p.id}</span> ${p.enunciado}</div>`;
+            html += `<div class="opciones">`;
+
+            p.opciones.forEach((opcion, i) => {
+                const idRadio = `p${p.id}_op${i}`;
+                html += `
+                    <div class="opcion">
+                        <input type="radio" name="pregunta_${p.id}" value="${i}" id="${idRadio}">
+                        <label for="${idRadio}"><strong>${letras[i]}.</strong> ${opcion}</label>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            // Contenedor de respuesta correcta (oculto inicialmente)
+            html += `
+                <div class="respuesta-correcta" id="respuesta-${p.id}">
+                    <strong>✅ Respuesta correcta: ${letras[p.correcta].toUpperCase()}</strong>
+                    <div class="explica">${p.explicacion}</div>
+                </div>
+            `;
+            html += `</div>`;
+        });
+
+        container.innerHTML = html;
+
+        // ============================================================
+        //  FUNCIONES DE CONTROL
+        // ============================================================
+
+        // Mostrar todas las respuestas
+        function mostrarTodas() {
+            preguntas.forEach(p => {
+                const div = document.getElementById(`respuesta-${p.id}`);
+                if (div) div.classList.add('mostrar');
+            });
+            actualizarResultado();
+        }
+
+        // Ocultar todas las respuestas
+        function ocultarTodas() {
+            preguntas.forEach(p => {
+                const div = document.getElementById(`respuesta-${p.id}`);
+                if (div) div.classList.remove('mostrar');
+            });
+            actualizarResultado();
+        }
+
+        // Ver respuestas (solo las que tienen selección)
+        function verRespuestas() {
+            let aciertos = 0;
+            let total = preguntas.length;
+
+            preguntas.forEach(p => {
+                const div = document.getElementById(`respuesta-${p.id}`);
+                if (!div) return;
+
+                // Buscar el radio seleccionado
+                const radios = document.querySelectorAll(`input[name="pregunta_${p.id}"]`);
+                let seleccionado = null;
+                radios.forEach(r => {
+                    if (r.checked) seleccionado = parseInt(r.value);
+                });
+
+                // Mostrar la respuesta correcta siempre
+                div.classList.add('mostrar');
+
+                // Contar aciertos
+                if (seleccionado !== null && seleccionado === p.correcta) {
+                    aciertos++;
+                }
+            });
+
+            // Mostrar resultado
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                🎯 <strong>${aciertos}</strong> de <strong>${total}</strong> respuestas correctas 
+                (${Math.round((aciertos/total)*100)}%)
+                ${aciertos === total ? ' 🏆 ¡Perfecto!' : ''}
+            `;
+        }
+
+        // Actualizar resultado sin modificar visibilidad
+        function actualizarResultado() {
+            let aciertos = 0;
+            let total = preguntas.length;
+            let respondidas = 0;
+
+            preguntas.forEach(p => {
+                const radios = document.querySelectorAll(`input[name="pregunta_${p.id}"]`);
+                let seleccionado = null;
+                radios.forEach(r => {
+                    if (r.checked) {
+                        seleccionado = parseInt(r.value);
+                        respondidas++;
+                    }
+                });
+                if (seleccionado !== null && seleccionado === p.correcta) {
+                    aciertos++;
+                }
+            });
+
+            const resultadoDiv = document.getElementById('resultado');
+            if (respondidas === 0) {
+                resultadoDiv.innerHTML = '🔹 Selecciona tus respuestas y presiona "Ver respuestas"';
+            } else {
+                resultadoDiv.innerHTML = `
+                    📊 <strong>${aciertos}</strong> de <strong>${total}</strong> correctas 
+                    (${Math.round((aciertos/total)*100)}%) · 
+                    ${respondidas} respondidas de ${total}
+                `;
+            }
+        }
+
+        // Limpiar selección
+        function limpiarSeleccion() {
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            ocultarTodas();
+            document.getElementById('resultado').innerHTML = '🔹 Selecciona tus respuestas y presiona "Ver respuestas"';
+        }
+
+        // ============================================================
+        //  EVENTOS
+        // ============================================================
+        document.getElementById('btnVerRespuestas').addEventListener('click', verRespuestas);
+        document.getElementById('btnMostrarTodas').addEventListener('click', mostrarTodas);
+        document.getElementById('btnOcultarTodas').addEventListener('click', ocultarTodas);
+        document.getElementById('btnLimpiar').addEventListener('click', limpiarSeleccion);
+
+        // Cada vez que se selecciona una opción, actualizar el contador
+        document.addEventListener('change', function(e) {
+            if (e.target && e.target.type === 'radio' && e.target.name.startsWith('pregunta_')) {
+                actualizarResultado();
+            }
+        });
+
+        // Inicializar
+        actualizarResultado();
+
+    })();
+</script>
+
+</body>
+</html>
+```
