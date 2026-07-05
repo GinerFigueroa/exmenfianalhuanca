@@ -1677,4 +1677,661 @@
 
 </body>
 </html>
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exámenes integrados · Preguntas clave · Planeamiento Estratégico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f0f4fa;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+            padding: 2rem 1rem;
+            color: #0b1e33;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 30px 55px -20px rgba(0, 20, 50, 0.3);
+            padding: 2.8rem 3rem;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            border-bottom: 5px solid #1a5bb5;
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: #06204a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        h1 small {
+            font-size: 1rem;
+            font-weight: 500;
+            background: #e1ebfa;
+            padding: 0.3rem 1.4rem;
+            border-radius: 40px;
+            color: #1a4b8a;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 650;
+            margin-top: 2.2rem;
+            margin-bottom: 1rem;
+            padding-left: 0.8rem;
+            border-left: 6px solid #1a5bb5;
+            color: #0a2b5a;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.6rem;
+            color: #103c70;
+        }
+
+        /* ============================================================ */
+        /*  TARJETAS DE PREGUNTAS CLAVE                                   */
+        /* ============================================================ */
+        .grid-preguntas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .card-pregunta {
+            background: #f9fcff;
+            border-radius: 20px;
+            padding: 1.5rem 1.6rem;
+            border: 1px solid #e3ecf7;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            transition: 0.15s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-pregunta:hover {
+            border-color: #b8ceea;
+            box-shadow: 0 6px 16px rgba(26, 91, 181, 0.08);
+        }
+
+        .card-pregunta .icono {
+            font-size: 2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-pregunta .etiqueta {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1a5bb5;
+            background: #e1ebfa;
+            display: inline-block;
+            padding: 0.1rem 0.9rem;
+            border-radius: 40px;
+            margin-bottom: 0.4rem;
+        }
+
+        .card-pregunta .pregunta {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: #0a2b5a;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-pregunta .respuesta {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a5bb5;
+            background: #eef5ff;
+            padding: 0.3rem 1rem;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
+
+        .card-pregunta .detalle {
+            font-size: 0.9rem;
+            color: #2c4a70;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px dashed #dce6f2;
+        }
+
+        .card-pregunta .detalle strong {
+            color: #0a2b5a;
+        }
+
+        /* ============================================================ */
+        /*  PROCESO DE PLANEAMIENTO ESTRATÉGICO - FLUJO GRÁFICO         */
+        /* ============================================================ */
+        .proceso-container {
+            background: #f9fcff;
+            border-radius: 24px;
+            padding: 2rem 2rem;
+            border: 1px solid #e3ecf7;
+            margin: 1.5rem 0;
+        }
+
+        .flujo-proceso {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem 0.8rem;
+            margin: 1.2rem 0;
+        }
+
+        .paso {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 0.9rem 1.6rem;
+            border: 2px solid #1a5bb5;
+            font-weight: 600;
+            font-size: 1rem;
+            color: #0a2b5a;
+            text-align: center;
+            min-width: 100px;
+            box-shadow: 0 2px 8px rgba(26, 91, 181, 0.08);
+            position: relative;
+        }
+
+        .paso .numero {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #1a5bb5;
+            background: #e1ebfa;
+            border-radius: 40px;
+            padding: 0.05rem 0.6rem;
+            display: inline-block;
+            margin-bottom: 0.1rem;
+        }
+
+        .paso .texto {
+            font-size: 1.05rem;
+        }
+
+        .flecha {
+            font-size: 1.8rem;
+            color: #1a5bb5;
+            font-weight: 300;
+        }
+
+        .paso-validacion {
+            background: #e9f0fc;
+            border: 2px dashed #1a5bb5;
+            border-radius: 16px;
+            padding: 0.9rem 1.6rem;
+            font-weight: 600;
+            color: #0a2b5a;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .paso-validacion .texto {
+            font-size: 1rem;
+        }
+
+        .paso-validacion .sub {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: #2c4a70;
+        }
+
+        /* ============================================================ */
+        /*  DIAGRAMA DE VALIDACIÓN CON MISIÓN Y VISIÓN                   */
+        /* ============================================================ */
+        .validacion-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem 2rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: #eef5ff;
+            border-radius: 20px;
+            border: 1px solid #ccdef5;
+        }
+
+        .validacion-item {
+            text-align: center;
+            padding: 1rem 1.8rem;
+            background: white;
+            border-radius: 16px;
+            border: 2px solid #1a5bb5;
+            min-width: 120px;
+            box-shadow: 0 2px 8px rgba(26, 91, 181, 0.06);
+        }
+
+        .validacion-item .icono {
+            font-size: 1.8rem;
+            display: block;
+        }
+
+        .validacion-item .label {
+            font-weight: 600;
+            color: #0a2b5a;
+            font-size: 1rem;
+        }
+
+        .validacion-item .sub {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #2c4a70;
+        }
+
+        .flecha-validacion {
+            font-size: 2rem;
+            color: #1a5bb5;
+        }
+
+        .circulo-central {
+            background: #1a5bb5;
+            color: white;
+            border-radius: 60px;
+            padding: 0.8rem 2rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        /* ============================================================ */
+        /*  RATIO DE LIQUIDEZ - GRÁFICO VISUAL                          */
+        /* ============================================================ */
+        .ratio-container {
+            background: #f9fcff;
+            border-radius: 20px;
+            padding: 1.5rem 2rem;
+            border: 1px solid #e3ecf7;
+            margin: 1.5rem 0;
+        }
+
+        .ratio-barra {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 0.8rem 0;
+        }
+
+        .barra-exterior {
+            flex: 1;
+            min-width: 200px;
+            height: 32px;
+            background: #e9edf4;
+            border-radius: 40px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .barra-interior {
+            height: 100%;
+            width: 80%;
+            background: linear-gradient(90deg, #f0b3b3, #d9534f);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            font-weight: 700;
+            color: white;
+            font-size: 0.85rem;
+            transition: width 0.3s ease;
+        }
+
+        .barra-interior .label-ratio {
+            background: rgba(0,0,0,0.3);
+            padding: 0.05rem 0.8rem;
+            border-radius: 40px;
+        }
+
+        .ratio-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .ratio-info .valor {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #b53b3b;
+        }
+
+        .ratio-info .interpretacion {
+            font-size: 0.95rem;
+            color: #2c4a70;
+        }
+
+        .ratio-info .interpretacion strong {
+            color: #0a2b5a;
+        }
+
+        .ratio-leyenda {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid #dce6f2;
+        }
+
+        .ratio-leyenda .item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .ratio-leyenda .color-box {
+            width: 20px;
+            height: 20px;
+            border-radius: 6px;
+        }
+
+        .color-box.rojo { background: #d9534f; }
+        .color-box.verde { background: #5cb85c; }
+        .color-box.amarillo { background: #f0ad4e; }
+
+        /* ============================================================ */
+        /*  RESPONSIVE                                                   */
+        /* ============================================================ */
+        @media (max-width: 700px) {
+            .container {
+                padding: 1.5rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+            }
+            h1 small {
+                font-size: 0.7rem;
+                padding: 0.2rem 1rem;
+                margin-top: 0.3rem;
+            }
+            .grid-preguntas {
+                grid-template-columns: 1fr;
+            }
+            .flujo-proceso {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .flecha {
+                transform: rotate(90deg);
+                font-size: 1.4rem;
+            }
+            .paso, .paso-validacion {
+                min-width: unset;
+            }
+            .validacion-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .flecha-validacion {
+                transform: rotate(90deg);
+                font-size: 1.4rem;
+            }
+            .ratio-barra {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .ratio-info {
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1>
+        📘 Exámenes integrados · Preguntas clave
+        <small>Planeamiento Estratégico</small>
+    </h1>
+
+    <!-- ============================================================ -->
+    <!--  TARJETAS DE PREGUNTAS CLAVE                                   -->
+    <!-- ============================================================ -->
+    <h2>🎯 Preguntas clave resueltas</h2>
+
+    <div class="grid-preguntas">
+
+        <!-- 1. Responsable de estrategia -->
+        <div class="card-pregunta">
+            <div class="icono">👤</div>
+            <div class="etiqueta">Pregunta clave</div>
+            <div class="pregunta">Responsable de estrategia</div>
+            <div class="respuesta">CEO</div>
+            <div class="detalle">
+                <strong>Explicación:</strong> El CEO (Chief Executive Officer) es el máximo responsable de definir y liderar la estrategia corporativa, alineando los objetivos de la organización con la visión y misión.
+            </div>
+        </div>
+
+        <!-- 2. Objetivo Finanzas -->
+        <div class="card-pregunta">
+            <div class="icono">💰</div>
+            <div class="etiqueta">Pregunta clave</div>
+            <div class="pregunta">Objetivo Finanzas</div>
+            <div class="respuesta">Maximizar beneficios</div>
+            <div class="detalle">
+                <strong>Explicación:</strong> El objetivo principal del área financiera es maximizar el valor para los accionistas, incrementando la rentabilidad y el beneficio neto de la empresa.
+            </div>
+        </div>
+
+        <!-- 3. Objetivo Operaciones -->
+        <div class="card-pregunta">
+            <div class="icono">⚙️</div>
+            <div class="etiqueta">Pregunta clave</div>
+            <div class="pregunta">Objetivo Operaciones</div>
+            <div class="respuesta">ROI de activos fijos</div>
+            <div class="detalle">
+                <strong>Explicación:</strong> El ROI (Retorno sobre la Inversión) de activos fijos mide la eficiencia con la que la empresa utiliza sus activos para generar ingresos. Es un indicador clave de la gestión operativa.
+            </div>
+        </div>
+
+        <!-- 4. Ratio de liquidez 0.8 -->
+        <div class="card-pregunta">
+            <div class="icono">📊</div>
+            <div class="etiqueta">Pregunta clave</div>
+            <div class="pregunta">Ratio de liquidez 0.8</div>
+            <div class="respuesta">Capacidad limitada de pago inmediato</div>
+            <div class="detalle">
+                <strong>Explicación:</strong> Un ratio de liquidez de 0.8 significa que por cada S/1.00 de deuda a corto plazo, la empresa solo tiene S/0.80 en activos corrientes. Esto indica una <strong>capacidad limitada</strong> para afrontar obligaciones inmediatas.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  GRÁFICO: RATIO DE LIQUIDEZ 0.8                               -->
+    <!-- ============================================================ -->
+    <h2>📊 Ratio de liquidez 0.8 · explicación gráfica</h2>
+
+    <div class="ratio-container">
+        <div class="ratio-barra">
+            <div class="barra-exterior">
+                <div class="barra-interior" style="width: 80%;">
+                    <span class="label-ratio">80%</span>
+                </div>
+            </div>
+            <div class="ratio-info">
+                <div class="valor">0.80</div>
+                <div class="interpretacion">
+                    <strong>Capacidad limitada</strong> · Activo corriente cubre el <strong>80%</strong> del pasivo corriente
+                </div>
+            </div>
+        </div>
+
+        <div class="ratio-leyenda">
+            <div class="item">
+                <span class="color-box rojo"></span>
+                <span><strong>0.8</strong> — Insuficiente (riesgo de liquidez)</span>
+            </div>
+            <div class="item">
+                <span class="color-box amarillo"></span>
+                <span><strong>1.0</strong> — Punto de equilibrio</span>
+            </div>
+            <div class="item">
+                <span class="color-box verde"></span>
+                <span><strong>&gt; 1.5</strong> — Liquidez saludable</span>
+            </div>
+            <div class="item" style="font-size: 0.85rem; color: #2c4a70;">
+                ⚠️ <strong>Interpretación:</strong> Con 0.8, la empresa no genera suficiente liquidez para cubrir todas sus obligaciones de corto plazo. Se recomienda mejorar el capital de trabajo.
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  PROCESO DE PLANEAMIENTO ESTRATÉGICO - FLUJO GRÁFICO         -->
+    <!-- ============================================================ -->
+    <h2>🔄 Proceso de planeamiento estratégico</h2>
+
+    <div class="proceso-container">
+
+        <!-- FLUJO PRINCIPAL -->
+        <div class="flujo-proceso">
+            <div class="paso">
+                <span class="numero">Paso 1</span>
+                <span class="texto">🔍 Diagnóstico</span>
+            </div>
+            <span class="flecha">→</span>
+
+            <div class="paso">
+                <span class="numero">Paso 2</span>
+                <span class="texto">🎯 Objetivos</span>
+            </div>
+            <span class="flecha">→</span>
+
+            <div class="paso">
+                <span class="numero">Paso 3</span>
+                <span class="texto">📋 Estrategias</span>
+            </div>
+            <span class="flecha">→</span>
+
+            <div class="paso">
+                <span class="numero">Paso 4</span>
+                <span class="texto">📌 Plan de acción</span>
+            </div>
+        </div>
+
+        <!-- VALIDACIÓN CON MISIÓN Y VISIÓN -->
+        <div style="text-align: center; margin: 1rem 0 0.5rem;">
+            <div style="display: inline-block; background: #e1ebfa; padding: 0.3rem 2rem; border-radius: 40px; font-weight: 600; color: #0a2b5a; font-size: 0.9rem;">
+                ⚡ Se valida con Misión y Visión en cada etapa
+            </div>
+        </div>
+
+        <!-- DIAGRAMA DE VALIDACIÓN -->
+        <div class="validacion-container">
+            <div class="validacion-item">
+                <span class="icono">🎯</span>
+                <div class="label">Misión</div>
+                <div class="sub">¿Qué hacemos?</div>
+                <div class="sub" style="font-size: 0.7rem; color: #1a5bb5;">Razón de ser</div>
+            </div>
+
+            <span class="flecha-validacion">⟷</span>
+
+            <div class="circulo-central">
+                Validación <br> Estratégica
+            </div>
+
+            <span class="flecha-validacion">⟷</span>
+
+            <div class="validacion-item">
+                <span class="icono">👁️</span>
+                <div class="label">Visión</div>
+                <div class="sub">¿Dónde queremos llegar?</div>
+                <div class="sub" style="font-size: 0.7rem; color: #1a5bb5;">Aspiración futura</div>
+            </div>
+        </div>
+
+        <div style="background: #eef5ff; border-radius: 16px; padding: 1rem 1.5rem; margin-top: 1rem; border: 1px solid #ccdef5;">
+            <p style="font-weight: 500; color: #0a2b5a; text-align: center;">
+                ✅ <strong>Proceso completo:</strong> Diagnóstico → Objetivos → Estrategias → Plan de acción
+            </p>
+            <p style="font-size: 0.95rem; color: #2c4a70; text-align: center;">
+                La <strong>Misión</strong> y la <strong>Visión</strong> sirven como marco de referencia para validar que cada etapa del proceso esté alineada con el propósito y la dirección de la organización.
+            </p>
+        </div>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  RESUMEN VISUAL EN TABLA                                      -->
+    <!-- ============================================================ -->
+    <h2>📋 Resumen visual · Preguntas clave</h2>
+
+    <div style="background: #f9fcff; border-radius: 20px; padding: 1.5rem 2rem; border: 1px solid #e3ecf7; overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.95rem;">
+            <thead>
+                <tr style="background: #e3edfc;">
+                    <th style="padding: 0.8rem 1rem; text-align: left; border-bottom: 2px solid #b9ceea;">Pregunta</th>
+                    <th style="padding: 0.8rem 1rem; text-align: left; border-bottom: 2px solid #b9ceea;">Respuesta</th>
+                    <th style="padding: 0.8rem 1rem; text-align: left; border-bottom: 2px solid #b9ceea;">Explicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><strong>Responsable de estrategia</strong></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><span style="background: #1a5bb5; color: white; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;">CEO</span></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;">Máximo responsable de definir y liderar la estrategia corporativa.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><strong>Objetivo Finanzas</strong></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><span style="background: #1a5bb5; color: white; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;">Maximizar beneficios</span></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;">Incrementar la rentabilidad y el valor para los accionistas.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><strong>Objetivo Operaciones</strong></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><span style="background: #1a5bb5; color: white; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;">ROI de activos fijos</span></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;">Mide la eficiencia en el uso de activos para generar ingresos.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><strong>Ratio de liquidez 0.8</strong></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;"><span style="background: #d9534f; color: white; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;">Capacidad limitada</span></td>
+                    <td style="padding: 0.7rem 1rem; border-bottom: 1px solid #dfe8f3;">Solo cubre el 80% de las obligaciones a corto plazo.</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.7rem 1rem;"><strong>Proceso de planeamiento</strong></td>
+                    <td style="padding: 0.7rem 1rem;"><span style="background: #1a5bb5; color: white; padding: 0.2rem 1rem; border-radius: 40px; font-weight: 600;">Diagnóstico → Objetivos → Estrategias → Plan de acción</span></td>
+                    <td style="padding: 0.7rem 1rem;">Se valida con <strong>Misión</strong> y <strong>Visión</strong> en cada etapa.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--  FOOTER                                                       -->
+    <!-- ============================================================ -->
+    <div style="margin-top: 2.5rem; background: #f2f7ff; padding: 0.8rem 2rem; border-radius: 60px; text-align: center; font-weight: 500; color: #1a4b8a; border: 1px solid #c9daf5; font-size: 0.9rem;">
+        ✅ Exámenes integrados · Preguntas clave de Planeamiento Estratégico · Explicación gráfica
+    </div>
+
+</div>
+</body>
+</html>
+```
+
 ```
